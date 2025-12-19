@@ -557,7 +557,7 @@
                         <div class="result-title">
                             <i class="fas fa-chart-line"></i> 收入计算结果
                         </div>
-                        <div id="result-badge" class="result-badge badge-pakar">Pakar Penternak★</div>
+                        <div id="result-badge" class="result-badge badge-pakar">Pakar Penternak★★</div>
                     </div>
                     
                     <div class="income-grid">
@@ -587,7 +587,7 @@
                         
                         <div class="congrats-line">
                             <i class="fas fa-star"></i>
-                            <span>恭喜你成功晋升为 <span class="highlight" id="congrats-level">Pakar Penternak★</span>！</span>
+                            <span>恭喜你成功晋升为 <span class="highlight" id="congrats-level">Pakar Penternak★★</span>！</span>
                         </div>
                         
                         <div class="congrats-line">
@@ -732,19 +732,19 @@
                 }
                 // Pakar Penternak (调整范围：1000-4999已经是Penjaga，所以这里从5000开始)
                 else if (balance >= 5000 && balance <= 19999) {
-                    positionName = 'Pakar Penternak★';
-                    positionNameMalay = 'Pakar Penternak★';
-                    badgeClass = 'badge-pakar';
-                    dailyRate = 3.0;
-                    starRating = '⭐';
-                    levelRange = 'RM5000-19999';
-                    badgeType = 'pakar';
-                } else if (balance >= 20000 && balance <= 49999) {
                     positionName = 'Pakar Penternak★★';
                     positionNameMalay = 'Pakar Penternak★★';
                     badgeClass = 'badge-pakar';
-                    dailyRate = 4.0;
+                    dailyRate = 3.0;
                     starRating = '⭐⭐';
+                    levelRange = 'RM5000-19999';
+                    badgeType = 'pakar';
+                } else if (balance >= 20000 && balance <= 49999) {
+                    positionName = 'Pakar Penternak★★★';
+                    positionNameMalay = 'Pakar Penternak★★★';
+                    badgeClass = 'badge-pakar';
+                    dailyRate = 4.0;
+                    starRating = '⭐⭐⭐';
                     levelRange = 'RM20000-49999';
                     badgeType = 'pakar';
                 }
