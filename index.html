@@ -631,7 +631,7 @@
                             <div class="rule-level"><i class="fas fa-user-tie"></i> Penjaga Lembu</div>
                             <div class="rule-details">
                                 • RM30-499: ★ (2.0%)<br>
-                                • RM500-999: ★★ (2.3%)<br>
+                                • RM500-998: ★★ (2.3%)<br>
                                 • ≥RM1000: ★★★ (2.5%)
                             </div>
                         </div>
@@ -705,20 +705,28 @@
                     starRating = '⭐';
                     levelRange = 'RM30-499';
                     badgeType = 'penjaga';
-                } else if (balance >= 500 && balance <= 999) {
+                } else if (balance >= 500 && balance <= 998) {
                     positionName = 'Penjaga Lembu★★';
                     positionNameMalay = 'Penjaga Lembu★★';
                     badgeClass = 'badge-penjaga';
                     dailyRate = 2.3;
                     starRating = '⭐⭐';
-                    levelRange = 'RM500-999';
+                    levelRange = 'RM500-998';
                     badgeType = 'penjaga';
-                } else if (balance >= 1000 && balance <= 4999) {
+                } else if (balance >= 999 && balance <= 999) {
                     positionName = 'Penjaga Lembu★★★';
                     positionNameMalay = 'Penjaga Lembu★★★';
                     badgeClass = 'badge-penjaga';
                     dailyRate = 2.5;
                     starRating = '⭐⭐⭐';
+                    levelRange = 'RM999';
+                    badgeType = 'penjaga';
+                } else if (balance >= 1000 && balance <= 4999) {
+                    positionName = 'Pakar Penternak★';
+                    positionNameMalay = 'Pakar Penternak★';
+                    badgeClass = 'badge-penjaga';
+                    dailyRate = 2.5;
+                    starRating = '⭐';
                     levelRange = '≥RM1000';
                     badgeType = 'penjaga';
                 }
