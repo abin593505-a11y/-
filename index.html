@@ -155,58 +155,6 @@
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
         }
         
-        .tier-selector {
-            margin-top: 15px;
-            padding: 15px;
-            background-color: #f8f9fa;
-            border-radius: 10px;
-            display: none;
-        }
-        
-        .tier-selector.active {
-            display: block;
-        }
-        
-        .tier-options {
-            display: flex;
-            gap: 15px;
-            margin-top: 10px;
-        }
-        
-        .tier-option {
-            flex: 1;
-            padding: 15px;
-            background-color: white;
-            border: 2px solid #ddd;
-            border-radius: 8px;
-            cursor: pointer;
-            transition: all 0.3s;
-            text-align: center;
-        }
-        
-        .tier-option:hover {
-            border-color: #1a2a6c;
-            background-color: #f0f8ff;
-        }
-        
-        .tier-option.selected {
-            border-color: #0a8c0a;
-            background-color: #e6fff0;
-            box-shadow: 0 0 10px rgba(10, 140, 10, 0.2);
-        }
-        
-        .tier-stars {
-            color: #fdbb2d;
-            font-size: 1.5rem;
-            margin-bottom: 5px;
-        }
-        
-        .tier-rate {
-            font-weight: bold;
-            color: #1a2a6c;
-            font-size: 1.2rem;
-        }
-        
         .level-indicator {
             margin-top: 20px;
             padding: 20px;
@@ -443,6 +391,12 @@
             margin-top: 10px;
             font-style: italic;
         }
+        
+        /* 添加星星样式 */
+        .star-emoji {
+            color: #fdbb2d;
+            text-shadow: 0 0 3px rgba(253, 187, 45, 0.5);
+        }
     </style>
 </head>
 <body>
@@ -466,28 +420,11 @@
                         <input type="range" id="balance-slider" min="50" max="100000" step="50" value="50">
                     </div>
                     <p style="margin-top: 10px; color: #666; font-size: 0.9rem;">调整滑块或直接输入金额 (RM50 - RM100,000)</p>
-                    
-                    <!-- 500-999范围选择器 -->
-                    <div class="tier-selector" id="tier-selector">
-                        <p style="font-weight: bold; margin-bottom: 10px;">选择收益等级:</p>
-                        <div class="tier-options">
-                            <div class="tier-option" data-tier="2star" data-rate="2.3">
-                                <div class="tier-stars">★★</div>
-                                <div class="tier-rate">2.3% 收益率</div>
-                                <div style="font-size: 0.9rem; color: #666;">每日收益: RM11.5 - RM23</div>
-                            </div>
-                            <div class="tier-option" data-tier="3star" data-rate="2.5">
-                                <div class="tier-stars">★★★</div>
-                                <div class="tier-rate">2.5% 收益率</div>
-                                <div style="font-size: 0.9rem; color: #666;">每日收益: RM12.5 - RM25</div>
-                            </div>
-                        </div>
-                    </div>
                 </div>
                 
                 <div class="level-indicator">
-                    <div class="level-title" id="current-level">Pengembala Lembu</div>
-                    <div class="level-range" id="level-range">余额范围: RM50 - RM499</div>
+                    <div class="level-title" id="current-level">Penjaga Lembu <span class="star-emoji">⭐</span></div>
+                    <div class="level-range" id="level-range">余额范围: RM50 - RM299</div>
                     <div class="daily-rate" id="daily-rate">每日收益率: 2%</div>
                 </div>
                 
@@ -522,10 +459,10 @@
                 <div class="level-indicator" style="background: linear-gradient(90deg, #e6fff0, #f0ffe6);">
                     <div class="level-title"><i class="fas fa-trophy"></i> 当前等级详情</div>
                     <div id="level-details">
-                        <p><strong>等级:</strong> Penjaga Lembu</p>
-                        <p><strong>余额范围:</strong> RM50 - RM499</p>
+                        <p><strong>等级:</strong> Penjaga Lembu <span class="star-emoji">⭐</span></p>
+                        <p><strong>余额范围:</strong> RM50 - RM299</p>
                         <p><strong>每日收益率:</strong> 2%</p>
-                        <p><strong>每日收益范围:</strong> RM1 - RM10</p>
+                        <p><strong>每日收益范围:</strong> RM1 - RM6</p>
                     </div>
                 </div>
             </div>
@@ -535,7 +472,7 @@
             <h2 class="congrats-title"><i class="fas fa-gift"></i> 晋升恭喜话术</h2>
             
             <div class="congrats-message" id="congrats-message">
-🎯 <strong>恭喜您成功晋升为 Penjaga Lembu★！</strong>这标志着您已迈出稳健财富增长的第一步。
+🎯 <strong>恭喜您成功晋升为 Penjaga Lembu⭐！</strong>这标志着您已迈出稳健财富增长的第一步。
 ✅ <strong>当前资产概况</strong>
 💰 <strong>储蓄钱包：RM50.00</strong>
 📈 <strong>收益预览：RM1.00/日 | RM30.00/月 | RM365.00/年</strong>
@@ -575,39 +512,39 @@
                         <td>-</td>
                     </tr>
                     <tr>
-                        <td class="tier-name">Penjaga Lembu <span class="star-count">(★)</span></td>
-                        <td>50 - 499</td>
-                        <td>2%</td>
-                        <td>1 - 10</td>
-                        <td>30 - 300</td>
-                        <td>365 - 3,650</td>
+                        <td class="tier-name">Penjaga Lembu <span class="star-emoji">⭐</span></td>
+                        <td>50 - 299</td>
+                        <td>2.0%</td>
+                        <td>1 - 6</td>
+                        <td>30 - 180</td>
+                        <td>365 - 2,190</td>
                     </tr>
                     <tr>
-                        <td class="tier-name">Penjaga Lembu <span class="star-count">(★★)</span></td>
-                        <td>500 - 999</td>
+                        <td class="tier-name">Penjaga Lembu <span class="star-emoji">⭐⭐</span></td>
+                        <td>300 - 599</td>
                         <td>2.3%</td>
-                        <td>11.5 - 23</td>
-                        <td>345 - 690</td>
-                        <td>4,198 - 8,395</td>
+                        <td>6.9 - 13.8</td>
+                        <td>207 - 414</td>
+                        <td>2,520 - 5,040</td>
                     </tr>
                     <tr>
-                        <td class="tier-name">Penjaga Lembu <span class="star-count">(★★★)</span></td>
-                        <td>500 - 999</td>
+                        <td class="tier-name">Penjaga Lembu <span class="star-emoji">⭐⭐⭐</span></td>
+                        <td>600 - 999</td>
                         <td>2.5%</td>
-                        <td>12.5 - 25</td>
-                        <td>375 - 750</td>
-                        <td>4,562 - 9,125</td>
+                        <td>15 - 25</td>
+                        <td>450 - 750</td>
+                        <td>5,475 - 9,125</td>
                     </tr>
                     <tr>
-                        <td class="tier-name">Pakar Pentemak</td>
+                        <td class="tier-name">Pakar Penternak <span class="star-emoji">⭐</span></td>
                         <td>1,000 - 4,999</td>
-                        <td>2.5%</td>
-                        <td>25 - 125</td>
-                        <td>750 - 3,750</td>
-                        <td>9,125 - 45,625</td>
+                        <td>2.7%</td>
+                        <td>27 - 135</td>
+                        <td>810 - 4,050</td>
+                        <td>9,855 - 49,275</td>
                     </tr>
                     <tr>
-                        <td class="tier-name">Pakar Pentemak</td>
+                        <td class="tier-name">Pakar Penternak <span class="star-emoji">⭐⭐</span></td>
                         <td>5,000 - 19,999</td>
                         <td>3.0%</td>
                         <td>150 - 600</td>
@@ -615,7 +552,7 @@
                         <td>54,750 - 219,000</td>
                     </tr>
                     <tr>
-                        <td class="tier-name">Pakar Pentemak</td>
+                        <td class="tier-name">Pakar Penternak <span class="star-emoji">⭐⭐⭐</span></td>
                         <td>20,000 - 49,999</td>
                         <td>4.0%</td>
                         <td>800 - 2,000</td>
@@ -623,15 +560,15 @@
                         <td>292,000 - 730,000</td>
                     </tr>
                     <tr>
-                        <td class="tier-name">Rakan Kongsi Ladang</td>
+                        <td class="tier-name">Rakan Kongsi Ladang <span class="star-emoji">⭐</span></td>
                         <td>50,000 - 99,999</td>
                         <td>5.0%</td>
-                        <td>≥2,500</td>
-                        <td>≥75,000</td>
-                        <td>≥912,500</td>
+                        <td>2,500 - 5,000</td>
+                        <td>75,000 - 150,000</td>
+                        <td>912,500 - 1,825,000</td>
                     </tr>
                     <tr>
-                        <td class="tier-name">Rakan Kongsi Ladang</td>
+                        <td class="tier-name">Rakan Kongsi Ladang <span class="star-emoji">⭐⭐</span></td>
                         <td>≥50,000</td>
                         <td>6.0%</td>
                         <td>≥3,000</td>
@@ -639,7 +576,7 @@
                         <td>≥1,095,000</td>
                     </tr>
                     <tr>
-                        <td class="tier-name">Rakan Kongsi Ladang</td>
+                        <td class="tier-name">Rakan Kongsi Ladang <span class="star-emoji">⭐⭐⭐</span></td>
                         <td>≥50,000</td>
                         <td>8.0%</td>
                         <td>≥4,000</td>
@@ -661,8 +598,6 @@
         // 获取DOM元素
         const balanceInput = document.getElementById('balance');
         const balanceSlider = document.getElementById('balance-slider');
-        const tierSelector = document.getElementById('tier-selector');
-        const tierOptions = document.querySelectorAll('.tier-option');
         const calculateBtn = document.getElementById('calculate-btn');
         const resetBtn = document.getElementById('reset-btn');
         const copyBtn = document.getElementById('copy-btn');
@@ -679,29 +614,22 @@
         
         const congratsMessage = document.getElementById('congrats-message');
         
-        // 定义收益等级数据
+        // 根据您提供的数据定义收益等级
         const tiers = [
-            { name: "Pengembala Lembu", min: 0, max: 49, rate: 0, dailyMin: 0, dailyMax: 0, star: "" },
-            { name: "Penjaga Lembu", min: 50, max: 499, rate: 2.0, dailyMin: 1, dailyMax: 10, star: "★" },
-            { name: "Penjaga Lembu", min: 500, max: 999, rate: 2.3, dailyMin: 11.5, dailyMax: 23, star: "★★", tierType: "2star" },
-            { name: "Penjaga Lembu", min: 500, max: 999, rate: 2.5, dailyMin: 12.5, dailyMax: 25, star: "★★★", tierType: "3star" },
-            { name: "Pakar Pentemak", min: 1000, max: 4999, rate: 2.5, dailyMin: 25, dailyMax: 125, star: "" },
-            { name: "Pakar Pentemak", min: 5000, max: 19999, rate: 3.0, dailyMin: 150, dailyMax: 600, star: "" },
-            { name: "Pakar Pentemak", min: 20000, max: 49999, rate: 4.0, dailyMin: 800, dailyMax: 2000, star: "" },
-            { name: "Rakan Kongsi Ladang", min: 50000, max: 99999, rate: 5.0, dailyMin: 2500, dailyMax: 5000, star: "" },
-            { name: "Rakan Kongsi Ladang", min: 50000, max: 149999, rate: 6.0, dailyMin: 3000, dailyMax: 9000, star: "" },
-            { name: "Rakan Kongsi Ladang", min: 50000, max: 1000000, rate: 8.0, dailyMin: 4000, dailyMax: 80000, star: "" }
+            { name: "Pengembala Lembu", min: 0, max: 49, rate: 0, dailyMin: 0, dailyMax: 0, star: "⭐", monthlyMin: 0, monthlyMax: 0, yearlyMin: 0, yearlyMax: 0 },
+            { name: "Penjaga Lembu", min: 50, max: 299, rate: 2.0, dailyMin: 1, dailyMax: 6, star: "⭐", monthlyMin: 30, monthlyMax: 180, yearlyMin: 365, yearlyMax: 2190 },
+            { name: "Penjaga Lembu", min: 300, max: 599, rate: 2.3, dailyMin: 6.9, dailyMax: 13.8, star: "⭐⭐", monthlyMin: 207, monthlyMax: 414, yearlyMin: 2520, yearlyMax: 5040 },
+            { name: "Penjaga Lembu", min: 600, max: 999, rate: 2.5, dailyMin: 15, dailyMax: 25, star: "⭐⭐⭐", monthlyMin: 450, monthlyMax: 750, yearlyMin: 5475, yearlyMax: 9125 },
+            { name: "Pakar Penternak", min: 1000, max: 4999, rate: 2.7, dailyMin: 27, dailyMax: 135, star: "⭐", monthlyMin: 810, monthlyMax: 4050, yearlyMin: 9855, yearlyMax: 49275 },
+            { name: "Pakar Penternak", min: 5000, max: 19999, rate: 3.0, dailyMin: 150, dailyMax: 600, star: "⭐⭐", monthlyMin: 4500, monthlyMax: 18000, yearlyMin: 54750, yearlyMax: 219000 },
+            { name: "Pakar Penternak", min: 20000, max: 49999, rate: 4.0, dailyMin: 800, dailyMax: 2000, star: "⭐⭐⭐", monthlyMin: 24000, monthlyMax: 60000, yearlyMin: 292000, yearlyMax: 730000 },
+            { name: "Rakan Kongsi Ladang", min: 50000, max: 99999, rate: 5.0, dailyMin: 2500, dailyMax: 5000, star: "⭐", monthlyMin: 75000, monthlyMax: 150000, yearlyMin: 912500, yearlyMax: 1825000 },
+            { name: "Rakan Kongsi Ladang", min: 50000, max: 149999, rate: 6.0, dailyMin: 3000, dailyMax: 9000, star: "⭐⭐", monthlyMin: 90000, monthlyMax: 270000, yearlyMin: 1095000, yearlyMax: 3285000 },
+            { name: "Rakan Kongsi Ladang", min: 50000, max: 1000000, rate: 8.0, dailyMin: 4000, dailyMax: 80000, star: "⭐⭐⭐", monthlyMin: 120000, monthlyMax: 2400000, yearlyMin: 1460000, yearlyMax: 29200000 }
         ];
-        
-        // 当前选择的500-999等级
-        let selected500to999Tier = "2star"; // 默认选择2星
-        let selected500to999Rate = 2.3; // 默认2.3%收益率
         
         // 初始化函数
         function init() {
-            // 设置默认选择
-            setSelectedTierOption("2star");
-            
             calculateEarnings();
             updateSlider();
             updateChineseCongratsMessage();
@@ -710,31 +638,14 @@
             balanceInput.addEventListener('input', function() {
                 balanceSlider.value = this.value;
                 updateSlider();
-                checkFor500to999Range();
                 calculateEarnings();
                 updateChineseCongratsMessage();
             });
             
             balanceSlider.addEventListener('input', function() {
                 balanceInput.value = this.value;
-                checkFor500to999Range();
                 calculateEarnings();
                 updateChineseCongratsMessage();
-            });
-            
-            // 等级选项点击事件
-            tierOptions.forEach(option => {
-                option.addEventListener('click', function() {
-                    const tierType = this.getAttribute('data-tier');
-                    const rate = parseFloat(this.getAttribute('data-rate'));
-                    
-                    setSelectedTierOption(tierType);
-                    selected500to999Tier = tierType;
-                    selected500to999Rate = rate;
-                    
-                    calculateEarnings();
-                    updateChineseCongratsMessage();
-                });
             });
             
             // 计算按钮
@@ -747,10 +658,6 @@
             resetBtn.addEventListener('click', function() {
                 balanceInput.value = 50;
                 balanceSlider.value = 50;
-                selected500to999Tier = "2star";
-                selected500to999Rate = 2.3;
-                setSelectedTierOption("2star");
-                checkFor500to999Range();
                 calculateEarnings();
                 updateChineseCongratsMessage();
             });
@@ -761,27 +668,6 @@
                 navigator.clipboard.writeText(malayMessage).then(function() {
                     showNotification();
                 });
-            });
-        }
-        
-        // 检查是否为500-999范围
-        function checkFor500to999Range() {
-            const balance = parseFloat(balanceInput.value);
-            
-            if (balance >= 500 && balance <= 999) {
-                tierSelector.classList.add('active');
-            } else {
-                tierSelector.classList.remove('active');
-            }
-        }
-        
-        // 设置选中的等级选项
-        function setSelectedTierOption(tierType) {
-            tierOptions.forEach(option => {
-                option.classList.remove('selected');
-                if (option.getAttribute('data-tier') === tierType) {
-                    option.classList.add('selected');
-                }
             });
         }
         
@@ -801,34 +687,25 @@
             // 确定当前等级
             let currentTier = tiers[0];
             
-            // 如果是500-999范围，使用用户选择的等级
-            if (balance >= 500 && balance <= 999) {
-                if (selected500to999Tier === "2star") {
-                    currentTier = tiers[2]; // 2星等级
-                } else {
-                    currentTier = tiers[3]; // 3星等级
-                }
-            } else {
-                // 其他范围自动选择
-                for (const tier of tiers) {
-                    if (balance >= tier.min && balance <= tier.max) {
-                        currentTier = tier;
-                        break;
-                    }
+            // 根据余额自动选择等级
+            for (const tier of tiers) {
+                if (balance >= tier.min && balance <= tier.max) {
+                    currentTier = tier;
+                    break;
                 }
             }
             
             // 更新等级显示
-            currentLevel.textContent = currentTier.name + (currentTier.star ? " " + currentTier.star : "");
+            currentLevel.innerHTML = `${currentTier.name} <span class="star-emoji">${currentTier.star}</span>`;
             levelRange.textContent = `余额范围: RM${currentTier.min} - RM${currentTier.max}`;
             dailyRate.textContent = `每日收益率: ${currentTier.rate}%`;
             
             // 更新等级详情
             levelDetails.innerHTML = `
-                <p><strong>等级:</strong> ${currentTier.name} ${currentTier.star}</p>
+                <p><strong>等级:</strong> ${currentTier.name} <span class="star-emoji">${currentTier.star}</span></p>
                 <p><strong>余额范围:</strong> RM${currentTier.min} - RM${currentTier.max}</p>
                 <p><strong>每日收益率:</strong> ${currentTier.rate}%</p>
-                <p><strong>每日收益范围:</strong> RM${currentTier.dailyMin} - RM${currentTier.dailyMax}</p>
+                <p><strong>每日收益范围:</strong> RM${currentTier.dailyMin.toFixed(1)} - RM${currentTier.dailyMax.toFixed(1)}</p>
             `;
             
             // 计算收益
@@ -851,20 +728,30 @@
             
             // 确定等级名称和星数
             let tierName = "Penjaga Lembu";
-            let starCount = "★";
+            let starCount = "⭐";
             
-            if (balance >= 500 && balance <= 999) {
-                if (selected500to999Tier === "2star") {
-                    starCount = "★★";
-                } else {
-                    starCount = "★★★";
-                }
-            } else if (balance >= 1000 && balance < 50000) {
-                tierName = "Pakar Pentemak";
-                starCount = "";
+            if (balance >= 300 && balance <= 599) {
+                starCount = "⭐⭐";
+            } else if (balance >= 600 && balance <= 999) {
+                starCount = "⭐⭐⭐";
+            } else if (balance >= 1000 && balance < 5000) {
+                tierName = "Pakar Penternak";
+                starCount = "⭐";
+            } else if (balance >= 5000 && balance < 20000) {
+                tierName = "Pakar Penternak";
+                starCount = "⭐⭐";
+            } else if (balance >= 20000 && balance < 50000) {
+                tierName = "Pakar Penternak";
+                starCount = "⭐⭐⭐";
+            } else if (balance >= 50000 && balance < 100000) {
+                tierName = "Rakan Kongsi Ladang";
+                starCount = "⭐";
+            } else if (balance >= 50000 && balance < 150000) {
+                tierName = "Rakan Kongsi Ladang";
+                starCount = "⭐⭐";
             } else if (balance >= 50000) {
                 tierName = "Rakan Kongsi Ladang";
-                starCount = "";
+                starCount = "⭐⭐⭐";
             }
             
             // 中文恭喜话术（加粗关键信息）
@@ -886,20 +773,30 @@
             
             // 确定等级名称和星数
             let tierName = "Penjaga Lembu";
-            let starCount = "★";
+            let starCount = "⭐";
             
-            if (balance >= 500 && balance <= 999) {
-                if (selected500to999Tier === "2star") {
-                    starCount = "★★";
-                } else {
-                    starCount = "★★★";
-                }
-            } else if (balance >= 1000 && balance < 50000) {
-                tierName = "Pakar Pentemak";
-                starCount = "";
+            if (balance >= 300 && balance <= 599) {
+                starCount = "⭐⭐";
+            } else if (balance >= 600 && balance <= 999) {
+                starCount = "⭐⭐⭐";
+            } else if (balance >= 1000 && balance < 5000) {
+                tierName = "Pakar Penternak";
+                starCount = "⭐";
+            } else if (balance >= 5000 && balance < 20000) {
+                tierName = "Pakar Penternak";
+                starCount = "⭐⭐";
+            } else if (balance >= 20000 && balance < 50000) {
+                tierName = "Pakar Penternak";
+                starCount = "⭐⭐⭐";
+            } else if (balance >= 50000 && balance < 100000) {
+                tierName = "Rakan Kongsi Ladang";
+                starCount = "⭐";
+            } else if (balance >= 50000 && balance < 150000) {
+                tierName = "Rakan Kongsi Ladang";
+                starCount = "⭐⭐";
             } else if (balance >= 50000) {
                 tierName = "Rakan Kongsi Ladang";
-                starCount = "";
+                starCount = "⭐⭐⭐";
             }
             
             // 马来语恭喜话术
