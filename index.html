@@ -191,13 +191,13 @@
             margin-bottom: 25px;
         }
        
-        @media (max-width: 800px) {
+        @media (max-width: 768px) {
             .results-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
         }
        
-        @media (max-width: 500px) {
+        @media (max-width: 480px) {
             .results-grid {
                 grid-template-columns: 1fr;
             }
@@ -217,10 +217,21 @@
             transform: translateY(-5px);
         }
        
-        .result-card.daily    { border-top-color: #0a8c0a; }
-        .result-card.monthly  { border-top-color: #1a2a6c; }
-        .result-card.yearly   { border-top-color: #fdbb2d; }
-        .result-card.twoyear  { border-top-color: #9c27b0; }
+        .result-card.daily {
+            border-top-color: #0a8c0a;
+        }
+       
+        .result-card.monthly {
+            border-top-color: #1a2a6c;
+        }
+       
+        .result-card.yearly {
+            border-top-color: #fdbb2d;
+        }
+       
+        .result-card.two-year {
+            border-top-color: #b21f1f;
+        }
        
         .result-title {
             font-size: 1rem;
@@ -391,6 +402,7 @@
             font-style: italic;
         }
        
+        /* 添加星星样式 */
         .star-emoji {
             color: #fdbb2d;
             text-shadow: 0 0 3px rgba(253, 187, 45, 0.5);
@@ -401,7 +413,7 @@
     <div class="container">
         <header>
             <h1><i class="fas fa-chart-line"></i> Ranch Sector Capital Management Ltd (RS) <i class="fas fa-coins"></i></h1>
-            <p class="subtitle">基于储蓄钱包余额的收益计算器 - 根据您的存款金额自动计算每日、每月、每年及两年潜在收益</p>
+            <p class="subtitle">基于储蓄钱包余额的收益计算器 - 根据您的存款金额自动计算每日、每月和每年的潜在收益</p>
         </header>
        
         <div class="content">
@@ -452,9 +464,9 @@
                         <div class="result-title"><i class="fas fa-calendar"></i> 每年收益 (365天)</div>
                         <div class="result-value" id="yearly-income">RM365.00</div>
                     </div>
-                    <div class="result-card twoyear">
-                        <div class="result-title"><i class="fas fa-clock"></i> 两年收益 (730天)</div>
-                        <div class="result-value" id="twoyear-income">RM730.00</div>
+                    <div class="result-card two-year">
+                        <div class="result-title"><i class="fas fa-calendar-plus"></i> 两年收益 (730天)</div>
+                        <div class="result-value" id="two-year-income">RM730.00</div>
                     </div>
                 </div>
                
@@ -477,7 +489,7 @@
 🎯 <strong>恭喜您成功晋升为 Penjaga Lembu⭐！</strong>这标志着您已迈出稳健财富增长的第一步。
 ✅ <strong>当前资产概况</strong>
 💰 <strong>储蓄钱包：RM50.00</strong>
-📈 <strong>收益预览：RM1.00/日 | RM30.00/月 | RM365.00/年 | RM730.00/2年</strong>
+📈 <strong>收益预览：RM1.00/日 | RM30.00/月 | RM365.00/年 | RM730.00/两年</strong>
 为放大您的收益潜力，我们为您开放了更广阔的发展通道：你现在解锁了更多关于合作伙伴的特权（邀请权限）和（畜牧业投资）以赚取更多收入。携手并进，实现资产的协同增长。</div>
            
             <div class="language-note">
@@ -491,7 +503,6 @@
             </div>
         </div>
        
-        <!-- 其余部分（tier-info、footer、notification）保持不变 -->
         <div class="tier-info">
             <h2 class="section-title"><i class="fas fa-layer-group"></i> 收益等级详情</h2>
             <table class="tier-table">
@@ -503,6 +514,7 @@
                         <th>每日收益 (RM)</th>
                         <th>每月收益 (RM)</th>
                         <th>每年收益 (RM)</th>
+                        <th>两年收益 (RM)</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -510,6 +522,7 @@
                         <td class="tier-name">Pengembala Lembu</td>
                         <td>-</td>
                         <td>2%</td>
+                        <td>-</td>
                         <td>-</td>
                         <td>-</td>
                         <td>-</td>
@@ -521,8 +534,8 @@
                         <td>1 - 6</td>
                         <td>30 - 180</td>
                         <td>365 - 2,190</td>
+                        <td>730 - 4,380</td>
                     </tr>
-                    <!-- 其他等级行保持不变 -->
                     <tr>
                         <td class="tier-name">Penjaga Lembu <span class="star-emoji">⭐⭐</span></td>
                         <td>300 - 599</td>
@@ -530,6 +543,7 @@
                         <td>6.9 - 13.8</td>
                         <td>207 - 414</td>
                         <td>2,520 - 5,040</td>
+                        <td>5,040 - 10,080</td>
                     </tr>
                     <tr>
                         <td class="tier-name">Penjaga Lembu <span class="star-emoji">⭐⭐⭐</span></td>
@@ -538,6 +552,7 @@
                         <td>15 - 25</td>
                         <td>450 - 750</td>
                         <td>5,475 - 9,125</td>
+                        <td>10,950 - 18,250</td>
                     </tr>
                     <tr>
                         <td class="tier-name">Pakar Penternak <span class="star-emoji">⭐</span></td>
@@ -546,6 +561,7 @@
                         <td>27 - 135</td>
                         <td>810 - 4,050</td>
                         <td>9,855 - 49,275</td>
+                        <td>19,710 - 98,550</td>
                     </tr>
                     <tr>
                         <td class="tier-name">Pakar Penternak <span class="star-emoji">⭐⭐</span></td>
@@ -554,6 +570,7 @@
                         <td>150 - 600</td>
                         <td>4,500 - 18,000</td>
                         <td>54,750 - 219,000</td>
+                        <td>109,500 - 438,000</td>
                     </tr>
                     <tr>
                         <td class="tier-name">Pakar Penternak <span class="star-emoji">⭐⭐⭐</span></td>
@@ -562,6 +579,7 @@
                         <td>800 - 2,000</td>
                         <td>24,000 - 60,000</td>
                         <td>292,000 - 730,000</td>
+                        <td>584,000 - 1,460,000</td>
                     </tr>
                     <tr>
                         <td class="tier-name">Rakan Kongsi Ladang <span class="star-emoji">⭐</span></td>
@@ -570,6 +588,7 @@
                         <td>2,500 - 5,000</td>
                         <td>75,000 - 150,000</td>
                         <td>912,500 - 1,825,000</td>
+                        <td>1,825,000 - 3,650,000</td>
                     </tr>
                     <tr>
                         <td class="tier-name">Rakan Kongsi Ladang <span class="star-emoji">⭐⭐</span></td>
@@ -578,6 +597,7 @@
                         <td>≥3,000</td>
                         <td>≥90,000</td>
                         <td>≥1,095,000</td>
+                        <td>≥2,190,000</td>
                     </tr>
                     <tr>
                         <td class="tier-name">Rakan Kongsi Ladang <span class="star-emoji">⭐⭐⭐</span></td>
@@ -586,6 +606,7 @@
                         <td>≥4,000</td>
                         <td>≥120,000</td>
                         <td>≥1,460,000</td>
+                        <td>≥2,920,000</td>
                     </tr>
                 </tbody>
             </table>
@@ -597,158 +618,233 @@
        
         <div class="notification" id="notification">Ucapan tahniah telah disalin ke papan keratan! (恭喜话术已复制到剪贴板！)</div>
     </div>
-
     <script>
-        // ──────────────────────────────────────────────
-        //  DOM 元素
-        // ──────────────────────────────────────────────
-        const balanceInput     = document.getElementById('balance');
-        const balanceSlider    = document.getElementById('balance-slider');
-        const calculateBtn     = document.getElementById('calculate-btn');
-        const resetBtn         = document.getElementById('reset-btn');
-        const copyBtn          = document.getElementById('copy-btn');
-        const notification     = document.getElementById('notification');
+        // 获取DOM元素
+        const balanceInput = document.getElementById('balance');
+        const balanceSlider = document.getElementById('balance-slider');
+        const calculateBtn = document.getElementById('calculate-btn');
+        const resetBtn = document.getElementById('reset-btn');
+        const copyBtn = document.getElementById('copy-btn');
+        const notification = document.getElementById('notification');
        
-        const currentLevel     = document.getElementById('current-level');
-        const levelRange       = document.getElementById('level-range');
-        const dailyRate        = document.getElementById('daily-rate');
-        const levelDetails     = document.getElementById('level-details');
+        const currentLevel = document.getElementById('current-level');
+        const levelRange = document.getElementById('level-range');
+        const dailyRate = document.getElementById('daily-rate');
+        const levelDetails = document.getElementById('level-details');
        
-        const dailyIncome      = document.getElementById('daily-income');
-        const monthlyIncome    = document.getElementById('monthly-income');
-        const yearlyIncome     = document.getElementById('yearly-income');
-        const twoyearIncome    = document.getElementById('twoyear-income');
+        const dailyIncome = document.getElementById('daily-income');
+        const monthlyIncome = document.getElementById('monthly-income');
+        const yearlyIncome = document.getElementById('yearly-income');
+        const twoYearIncome = document.getElementById('two-year-income');
        
-        const congratsMessage  = document.getElementById('congrats-message');
+        const congratsMessage = document.getElementById('congrats-message');
        
-        // 收益层级表（保持原样）
+        // 根据您提供的数据定义收益等级
         const tiers = [
-            { name: "Pengembala Lembu", min: 0, max: 49, rate: 0, dailyMin: 0, dailyMax: 0, star: "⭐", monthlyMin: 0, monthlyMax: 0, yearlyMin: 0, yearlyMax: 0 },
-            { name: "Penjaga Lembu", min: 50, max: 299, rate: 2.0, dailyMin: 1, dailyMax: 6, star: "⭐", monthlyMin: 30, monthlyMax: 180, yearlyMin: 365, yearlyMax: 2190 },
-            { name: "Penjaga Lembu", min: 300, max: 599, rate: 2.3, dailyMin: 6.9, dailyMax: 13.8, star: "⭐⭐", monthlyMin: 207, monthlyMax: 414, yearlyMin: 2520, yearlyMax: 5040 },
-            { name: "Penjaga Lembu", min: 600, max: 999, rate: 2.5, dailyMin: 15, dailyMax: 25, star: "⭐⭐⭐", monthlyMin: 450, monthlyMax: 750, yearlyMin: 5475, yearlyMax: 9125 },
-            { name: "Pakar Penternak", min: 1000, max: 4999, rate: 2.7, dailyMin: 27, dailyMax: 135, star: "⭐", monthlyMin: 810, monthlyMax: 4050, yearlyMin: 9855, yearlyMax: 49275 },
-            { name: "Pakar Penternak", min: 5000, max: 19999, rate: 3.0, dailyMin: 150, dailyMax: 600, star: "⭐⭐", monthlyMin: 4500, monthlyMax: 18000, yearlyMin: 54750, yearlyMax: 219000 },
-            { name: "Pakar Penternak", min: 20000, max: 49999, rate: 4.0, dailyMin: 800, dailyMax: 2000, star: "⭐⭐⭐", monthlyMin: 24000, monthlyMax: 60000, yearlyMin: 292000, yearlyMax: 730000 },
-            { name: "Rakan Kongsi Ladang", min: 50000, max: 99999, rate: 5.0, dailyMin: 2500, dailyMax: 5000, star: "⭐", monthlyMin: 75000, monthlyMax: 150000, yearlyMin: 912500, yearlyMax: 1825000 },
-            { name: "Rakan Kongsi Ladang", min: 50000, max: 149999, rate: 6.0, dailyMin: 3000, dailyMax: 9000, star: "⭐⭐", monthlyMin: 90000, monthlyMax: 270000, yearlyMin: 1095000, yearlyMax: 3285000 },
-            { name: "Rakan Kongsi Ladang", min: 50000, max: 1000000, rate: 8.0, dailyMin: 4000, dailyMax: 80000, star: "⭐⭐⭐", monthlyMin: 120000, monthlyMax: 2400000, yearlyMin: 1460000, yearlyMax: 29200000 }
+            { name: "Pengembala Lembu", min: 0, max: 49, rate: 0, dailyMin: 0, dailyMax: 0, star: "⭐", monthlyMin: 0, monthlyMax: 0, yearlyMin: 0, yearlyMax: 0, twoYearMin: 0, twoYearMax: 0 },
+            { name: "Penjaga Lembu", min: 50, max: 299, rate: 2.0, dailyMin: 1, dailyMax: 6, star: "⭐", monthlyMin: 30, monthlyMax: 180, yearlyMin: 365, yearlyMax: 2190, twoYearMin: 730, twoYearMax: 4380 },
+            { name: "Penjaga Lembu", min: 300, max: 599, rate: 2.3, dailyMin: 6.9, dailyMax: 13.8, star: "⭐⭐", monthlyMin: 207, monthlyMax: 414, yearlyMin: 2520, yearlyMax: 5040, twoYearMin: 5040, twoYearMax: 10080 },
+            { name: "Penjaga Lembu", min: 600, max: 999, rate: 2.5, dailyMin: 15, dailyMax: 25, star: "⭐⭐⭐", monthlyMin: 450, monthlyMax: 750, yearlyMin: 5475, yearlyMax: 9125, twoYearMin: 10950, twoYearMax: 18250 },
+            { name: "Pakar Penternak", min: 1000, max: 4999, rate: 2.7, dailyMin: 27, dailyMax: 135, star: "⭐", monthlyMin: 810, monthlyMax: 4050, yearlyMin: 9855, yearlyMax: 49275, twoYearMin: 19710, twoYearMax: 98550 },
+            { name: "Pakar Penternak", min: 5000, max: 19999, rate: 3.0, dailyMin: 150, dailyMax: 600, star: "⭐⭐", monthlyMin: 4500, monthlyMax: 18000, yearlyMin: 54750, yearlyMax: 219000, twoYearMin: 109500, twoYearMax: 438000 },
+            { name: "Pakar Penternak", min: 20000, max: 49999, rate: 4.0, dailyMin: 800, dailyMax: 2000, star: "⭐⭐⭐", monthlyMin: 24000, monthlyMax: 60000, yearlyMin: 292000, yearlyMax: 730000, twoYearMin: 584000, twoYearMax: 1460000 },
+            { name: "Rakan Kongsi Ladang", min: 50000, max: 99999, rate: 5.0, dailyMin: 2500, dailyMax: 5000, star: "⭐", monthlyMin: 75000, monthlyMax: 150000, yearlyMin: 912500, yearlyMax: 1825000, twoYearMin: 1825000, twoYearMax: 3650000 },
+            { name: "Rakan Kongsi Ladang", min: 50000, max: 149999, rate: 6.0, dailyMin: 3000, dailyMax: 9000, star: "⭐⭐", monthlyMin: 90000, monthlyMax: 270000, yearlyMin: 1095000, yearlyMax: 3285000, twoYearMin: 2190000, twoYearMax: 6570000 },
+            { name: "Rakan Kongsi Ladang", min: 50000, max: 1000000, rate: 8.0, dailyMin: 4000, dailyMax: 80000, star: "⭐⭐⭐", monthlyMin: 120000, monthlyMax: 2400000, yearlyMin: 1460000, yearlyMax: 29200000, twoYearMin: 2920000, twoYearMax: 58400000 }
         ];
        
+        // 初始化函数
         function init() {
             calculateEarnings();
             updateSlider();
             updateChineseCongratsMessage();
            
-            balanceInput.addEventListener('input', syncAndUpdate);
-            balanceSlider.addEventListener('input', syncAndUpdate);
-            calculateBtn.addEventListener('click', () => { calculateEarnings(); updateChineseCongratsMessage(); });
-            resetBtn.addEventListener('click', () => {
-                balanceInput.value = 50;
-                balanceSlider.value = 50;
-                syncAndUpdate();
+            // 输入框和滑块同步
+            balanceInput.addEventListener('input', function() {
+                balanceSlider.value = this.value;
+                updateSlider();
+                calculateEarnings();
+                updateChineseCongratsMessage();
             });
            
-            copyBtn.addEventListener('click', () => {
-                const malay = generateMalayCongratsMessage();
-                navigator.clipboard.writeText(malay).then(showNotification);
+            balanceSlider.addEventListener('input', function() {
+                balanceInput.value = this.value;
+                calculateEarnings();
+                updateChineseCongratsMessage();
+            });
+           
+            // 计算按钮
+            calculateBtn.addEventListener('click', function() {
+                calculateEarnings();
+                updateChineseCongratsMessage();
+            });
+           
+            // 重置按钮
+            resetBtn.addEventListener('click', function() {
+                balanceInput.value = 50;
+                balanceSlider.value = 50;
+                calculateEarnings();
+                updateChineseCongratsMessage();
+            });
+           
+            // 复制按钮 - 复制马来语版本
+            copyBtn.addEventListener('click', function() {
+                const malayMessage = generateMalayCongratsMessage();
+                navigator.clipboard.writeText(malayMessage).then(function() {
+                    showNotification();
+                });
             });
         }
        
-        function syncAndUpdate() {
-            balanceInput.value = balanceSlider.value = Math.max(50, Math.min(1000000, Number(balanceInput.value || balanceSlider.value)));
-            updateSlider();
-            calculateEarnings();
-            updateChineseCongratsMessage();
-        }
-       
+        // 更新滑块显示
         function updateSlider() {
-            const val = Number(balanceInput.value);
-            const perc = ((val - 50) / (100000 - 50)) * 100;
-            balanceSlider.style.background = `linear-gradient(90deg, #1a2a6c ${perc}%, #ddd ${perc}%)`;
+            const value = balanceInput.value;
+            const min = balanceSlider.min;
+            const max = balanceSlider.max;
+            const percentage = ((value - min) / (max - min)) * 100;
+            balanceSlider.style.background = `linear-gradient(90deg, #1a2a6c ${percentage}%, #ddd ${percentage}%)`;
         }
        
+        // 计算收益
         function calculateEarnings() {
-            const balance = parseFloat(balanceInput.value) || 0;
-            let tier = tiers[0];
-            for (const t of tiers) {
-                if (balance >= t.min && balance <= t.max) {
-                    tier = t;
+            const balance = parseFloat(balanceInput.value);
+           
+            // 确定当前等级
+            let currentTier = tiers[0];
+           
+            // 根据余额自动选择等级
+            for (const tier of tiers) {
+                if (balance >= tier.min && balance <= tier.max) {
+                    currentTier = tier;
                     break;
                 }
             }
            
-            currentLevel.innerHTML = `${tier.name} <span class="star-emoji">${tier.star}</span>`;
-            levelRange.textContent = `余额范围: RM${tier.min} - RM${tier.max}`;
-            dailyRate.textContent = `每日收益率: ${tier.rate}%`;
+            // 更新等级显示
+            currentLevel.innerHTML = `${currentTier.name} <span class="star-emoji">${currentTier.star}</span>`;
+            levelRange.textContent = `余额范围: RM${currentTier.min} - RM${currentTier.max}`;
+            dailyRate.textContent = `每日收益率: ${currentTier.rate}%`;
            
+            // 更新等级详情
             levelDetails.innerHTML = `
-                <p><strong>等级:</strong> ${tier.name} <span class="star-emoji">${tier.star}</span></p>
-                <p><strong>余额范围:</strong> RM${tier.min} - RM${tier.max}</p>
-                <p><strong>每日收益率:</strong> ${tier.rate}%</p>
-                <p><strong>每日收益范围:</strong> RM${tier.dailyMin.toFixed(1)} - RM${tier.dailyMax.toFixed(1)}</p>
+                <p><strong>等级:</strong> ${currentTier.name} <span class="star-emoji">${currentTier.star}</span></p>
+                <p><strong>余额范围:</strong> RM${currentTier.min} - RM${currentTier.max}</p>
+                <p><strong>每日收益率:</strong> ${currentTier.rate}%</p>
+                <p><strong>每日收益范围:</strong> RM${currentTier.dailyMin.toFixed(1)} - RM${currentTier.dailyMax.toFixed(1)}</p>
             `;
            
-            const daily   = (balance * tier.rate / 100);
-            const monthly = daily * 30;
-            const yearly  = daily * 365;
-            const twoyear = daily * 730;
+            // 计算收益
+            const dailyEarning = (balance * currentTier.rate / 100).toFixed(2);
+            const monthlyEarning = (dailyEarning * 30).toFixed(2);
+            const yearlyEarning = (dailyEarning * 365).toFixed(2);
+            const twoYearEarning = (dailyEarning * 730).toFixed(2);
            
-            dailyIncome.textContent   = `RM${daily.toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
-            monthlyIncome.textContent = `RM${monthly.toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
-            yearlyIncome.textContent  = `RM${yearly.toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
-            twoyearIncome.textContent = `RM${twoyear.toLocaleString('en-MY', {minimumFractionDigits:2, maximumFractionDigits:2})}`;
+            // 更新显示
+            dailyIncome.textContent = `RM${parseFloat(dailyEarning).toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            monthlyIncome.textContent = `RM${parseFloat(monthlyEarning).toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            yearlyIncome.textContent = `RM${parseFloat(yearlyEarning).toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
+            twoYearIncome.textContent = `RM${parseFloat(twoYearEarning).toLocaleString('en-MY', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}`;
         }
        
+        // 更新中文恭喜话术（界面上显示）
         function updateChineseCongratsMessage() {
-            const balance = parseFloat(balanceInput.value) || 0;
+            const balance = parseFloat(balanceInput.value);
+            const dailyEarning = dailyIncome.textContent;
+            const monthlyEarning = monthlyIncome.textContent;
+            const yearlyEarning = yearlyIncome.textContent;
+            const twoYearEarning = twoYearIncome.textContent;
+           
+            // 确定等级名称和星数
             let tierName = "Penjaga Lembu";
-            let star = "⭐";
+            let starCount = "⭐";
            
-            if (balance >= 300  && balance <= 599)   star = "⭐⭐";
-            if (balance >= 600  && balance <= 999)   star = "⭐⭐⭐";
-            if (balance >= 1000 && balance <  5000)  { tierName = "Pakar Penternak"; star = "⭐"; }
-            if (balance >= 5000 && balance <  20000) { tierName = "Pakar Penternak"; star = "⭐⭐"; }
-            if (balance >= 20000&& balance <  50000) { tierName = "Pakar Penternak"; star = "⭐⭐⭐"; }
-            if (balance >= 50000&& balance <  100000){ tierName = "Rakan Kongsi Ladang"; star = "⭐"; }
-            if (balance >= 50000&& balance <  150000){ tierName = "Rakan Kongsi Ladang"; star = "⭐⭐"; }
-            if (balance >= 50000)                    { tierName = "Rakan Kongsi Ladang"; star = "⭐⭐⭐"; }
+            if (balance >= 300 && balance <= 599) {
+                starCount = "⭐⭐";
+            } else if (balance >= 600 && balance <= 999) {
+                starCount = "⭐⭐⭐";
+            } else if (balance >= 1000 && balance < 5000) {
+                tierName = "Pakar Penternak";
+                starCount = "⭐";
+            } else if (balance >= 5000 && balance < 20000) {
+                tierName = "Pakar Penternak";
+                starCount = "⭐⭐";
+            } else if (balance >= 20000 && balance < 50000) {
+                tierName = "Pakar Penternak";
+                starCount = "⭐⭐⭐";
+            } else if (balance >= 50000 && balance < 100000) {
+                tierName = "Rakan Kongsi Ladang";
+                starCount = "⭐";
+            } else if (balance >= 50000 && balance < 150000) {
+                tierName = "Rakan Kongsi Ladang";
+                starCount = "⭐⭐";
+            } else if (balance >= 50000) {
+                tierName = "Rakan Kongsi Ladang";
+                starCount = "⭐⭐⭐";
+            }
            
-            const msg = `🎯 <strong>恭喜您成功晋升为 ${tierName}${star}！</strong>这标志着您已迈出稳健财富增长的第一步。
+            // 中文恭喜话术（加粗关键信息）
+            const message = `🎯 <strong>恭喜您成功晋升为 ${tierName}${starCount}！</strong>这标志着您已迈出稳健财富增长的第一步。
 ✅ <strong>当前资产概况</strong>
 💰 <strong>储蓄钱包：RM${balance.toFixed(2)}</strong>
-📈 <strong>收益预览：${dailyIncome.textContent}/日 | ${monthlyIncome.textContent}/月 | ${yearlyIncome.textContent}/年 | ${twoyearIncome.textContent}/2年</strong>
+📈 <strong>收益预览：${dailyEarning}/日 | ${monthlyEarning}/月 | ${yearlyEarning}/年 | ${twoYearEarning}/两年</strong>
 为放大您的收益潜力，我们为您开放了更广阔的发展通道：你现在解锁了更多关于合作伙伴的特权（邀请权限）和（畜牧业投资）以赚取更多收入。携手并进，实现资产的协同增长。`;
            
-            congratsMessage.innerHTML = msg;
+            congratsMessage.innerHTML = message;
         }
        
+        // 生成马来语恭喜话术（用于复制）
         function generateMalayCongratsMessage() {
-            const balance = parseFloat(balanceInput.value) || 0;
+            const balance = parseFloat(balanceInput.value);
+            const dailyEarning = dailyIncome.textContent;
+            const monthlyEarning = monthlyIncome.textContent;
+            const yearlyEarning = yearlyIncome.textContent;
+            const twoYearEarning = twoYearIncome.textContent;
+           
+            // 确定等级名称和星数
             let tierName = "Penjaga Lembu";
-            let star = "⭐";
+            let starCount = "⭐";
            
-            if (balance >= 300  && balance <= 599)   star = "⭐⭐";
-            if (balance >= 600  && balance <= 999)   star = "⭐⭐⭐";
-            if (balance >= 1000 && balance <  5000)  { tierName = "Pakar Penternak"; star = "⭐"; }
-            if (balance >= 5000 && balance <  20000) { tierName = "Pakar Penternak"; star = "⭐⭐"; }
-            if (balance >= 20000&& balance <  50000) { tierName = "Pakar Penternak"; star = "⭐⭐⭐"; }
-            if (balance >= 50000&& balance <  100000){ tierName = "Rakan Kongsi Ladang"; star = "⭐"; }
-            if (balance >= 50000&& balance <  150000){ tierName = "Rakan Kongsi Ladang"; star = "⭐⭐"; }
-            if (balance >= 50000)                    { tierName = "Rakan Kongsi Ladang"; star = "⭐⭐⭐"; }
+            if (balance >= 300 && balance <= 599) {
+                starCount = "⭐⭐";
+            } else if (balance >= 600 && balance <= 999) {
+                starCount = "⭐⭐⭐";
+            } else if (balance >= 1000 && balance < 5000) {
+                tierName = "Pakar Penternak";
+                starCount = "⭐";
+            } else if (balance >= 5000 && balance < 20000) {
+                tierName = "Pakar Penternak";
+                starCount = "⭐⭐";
+            } else if (balance >= 20000 && balance < 50000) {
+                tierName = "Pakar Penternak";
+                starCount = "⭐⭐⭐";
+            } else if (balance >= 50000 && balance < 100000) {
+                tierName = "Rakan Kongsi Ladang";
+                starCount = "⭐";
+            } else if (balance >= 50000 && balance < 150000) {
+                tierName = "Rakan Kongsi Ladang";
+                starCount = "⭐⭐";
+            } else if (balance >= 50000) {
+                tierName = "Rakan Kongsi Ladang";
+                starCount = "⭐⭐⭐";
+            }
            
-            return `🎯 Tahniah! Anda telah berjaya dinaikkan pangkat ke *${tierName}${star}*! Ini menandakan anda telah mengambil langkah pertama dalam pertumbuhan kekayaan yang kukuh.
+            // 马来语恭喜话术
+            return `🎯 Tahniah! Anda telah berjaya dinaikkan pangkat ke *${tierName}${starCount}*! Ini menandakan anda telah mengambil langkah pertama dalam pertumbuhan kekayaan yang kukuh.
 ✅ Profil Aset Semasa
 💰 Dompet Simpanan: *RM${balance.toFixed(2)}*
-📈 Pratonton Pendapatan: *${dailyIncome.textContent}/hari* | *${monthlyIncome.textContent}/bulan* | *${yearlyIncome.textContent}/tahun* | *${twoyearIncome.textContent}/2 tahun*
+📈 Pratonton Pendapatan: *${dailyEarning}/hari* | *${monthlyEarning}/bulan* | *${yearlyEarning}/tahun* | *${twoYearEarning}/2 tahun*
 Untuk memperbesar potensi pendapatan anda, kami telah membuka laluan pembangunan yang lebih luas untuk anda: Anda kini telah membuka kunci lebih banyak keistimewaan mengenai rakan kongsi *(keizinan jemputan)* dan *(pelaburan penternakan)* untuk menjana lebih banyak pendapatan. Bersama-sama maju, mencapai pertumbuhan aset yang sinergi.`;
         }
        
+        // 显示通知
         function showNotification() {
             notification.style.display = 'block';
-            setTimeout(() => notification.style.display = 'none', 3000);
+            setTimeout(() => {
+                notification.style.display = 'none';
+            }, 3000);
         }
        
+        // 页面加载时初始化
         document.addEventListener('DOMContentLoaded', init);
     </script>
 </body>
