@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RS 双倍奖励计算器 🐄💰</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;500;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans SC', sans-serif;
+            background: linear-gradient(135deg, #0f0c29 0%, #302b63 50%, #24243e 100%);
+            min-height: 100vh;
+        }
+        
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 50%, #ffd93d 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .input-glow:focus {
+            box-shadow: 0 0 30px rgba(245, 87, 108, 0.3);
+            border-color: rgba(245, 87, 108, 0.5);
+        }
+        
+        .reward-card {
+            background: linear-gradient(135deg, rgba(245, 87, 108, 0.1) 0%, rgba(255, 217, 61, 0.1) 100%);
+            border: 1px solid rgba(245, 87, 108, 0.2);
+        }
+        
+        .btn-copy {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-copy:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(79, 172, 254, 0.4);
+        }
+        
+        .btn-success {
+            background: linear-gradient(135deg, #10b981 0%, #34d399 100%);
+            transition: all 0.3s ease;
+        }
+        
+        .btn-success:hover {
+            transform: scale(1.02);
+            box-shadow: 0 5px 20px rgba(16, 185, 129, 0.4);
+        }
+        
+        .coin-float {
+            animation: float 3s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+        
+        .number-animate {
+            transition: all 0.3s ease;
+        }
+        
+        .toast {
+            animation: slideIn 0.3s ease, fadeOut 0.3s ease 2.7s;
+        }
+        
+        @keyframes slideIn {
+            from { transform: translateX(100%); opacity: 0; }
+            to { transform: translateX(0); opacity: 1; }
+        }
+        
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+        
+        .sparkle {
+            position: absolute;
+            pointer-events: none;
+            animation: sparkle 1s linear forwards;
+        }
+        
+        @keyframes sparkle {
+            0% { transform: scale(0) rotate(0deg); opacity: 1; }
+            100% { transform: scale(1.5) rotate(180deg); opacity: 0; }
+        }
+        
+        .script-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            transition: all 0.3s ease;
+            white-space: pre-line;
+        }
+        
+        .script-box:hover {
+            border-color: rgba(245, 87, 108, 0.3);
+            background: rgba(0, 0, 0, 0.4);
+        }
+    </style>
+</head>
+<body class="text-white overflow-x-hidden">
+
+    <div class="fixed inset-0 overflow-hidden pointer-events-none">
+        <div class="absolute top-20 left-10 text-6xl opacity-10 coin-float">💰</div>
+        <div class="absolute top-40 right-20 text-4xl opacity-10 coin-float" style="animation-delay: 0.5s;">🐄</div>
+        <div class="absolute bottom-32 left-1/4 text-5xl opacity-10 coin-float" style="animation-delay: 1s;">💎</div>
+        <div class="absolute bottom-20 right-10 text-3xl opacity-10 coin-float" style="animation-delay: 1.5s;">🔥</div>
+    </div>
+
+    <div class="relative z-10 container mx-auto px-4 py-8 max-w-4xl">
+        <div class="text-center mb-8">
+            <div class="inline-flex items-center gap-2 mb-4 px-4 py-2 rounded-full bg-white/10 border border-white/20 text-sm font-medium">
+                <span class="w-2 h-2 rounded-full bg-green-400 animate-pulse"></span>
+                活动时间：2月23日 - 3月1日
+            </div>
+            <h1 class="text-4xl md:text-6xl font-black mb-4">
+                <span class="gradient-text">RS 双倍奖励</span>
+                <span class="text-3xl md:text-5xl">🐄💰</span>
+            </h1>
+            <p class="text-gray-300 text-lg md:text-xl">邀请好友充值，自定义奖励等你来拿！</p>
+        </div>
+
+        <div class="glass-panel rounded-3xl p-6 mb-8">
+            <div class="grid md:grid-cols-3 gap-4 text-center">
+                <div class="reward-card rounded-2xl p-4">
+                    <div class="text-3xl font-bold text-pink-400 mb-1">10%</div>
+                    <div class="text-sm text-gray-400">基础推荐奖励 (固定)</div>
+                </div>
+                <div class="flex items-center justify-center text-2xl text-yellow-400 font-bold">+</div>
+                <div class="reward-card rounded-2xl p-4">
+                    <div class="text-3xl font-bold text-yellow-400 mb-1" id="bonusRateDisplay">5%</div>
+                    <div class="text-sm text-gray-400">额外活动奖励 (自定义)</div>
+                </div>
+            </div>
+            <div class="mt-4 text-center">
+                <div class="text-2xl font-bold text-white">
+                    = 总计 <span class="text-4xl gradient-text" id="totalRateDisplay">15%</span> 奖励！
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-panel rounded-3xl p-6 md:p-8 mb-8">
+            <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">🧮 奖励计算器</h2>
+            
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div>
+                    <label class="block text-gray-300 mb-2 text-sm font-medium">好友充值金额 (RM)</label>
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl font-bold">RM</span>
+                        <input type="number" id="amountInput" placeholder="例如：1000" 
+                            class="w-full bg-black/30 border border-white/20 rounded-2xl py-4 pl-12 pr-4 text-2xl font-bold text-white placeholder-gray-600 input-glow focus:outline-none"
+                            oninput="calculate()" min="0" step="10">
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button onclick="setAmount(50)" class="px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-pink-500/50 text-sm">RM 50</button>
+                        <button onclick="setAmount(100)" class="px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-pink-500/50 text-sm">RM 100</button>
+                        <button onclick="setAmount(500)" class="px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-pink-500/50 text-sm">RM 500</button>
+                        <button onclick="setAmount(1000)" class="px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-pink-500/50 text-sm">RM 1,000</button>
+                    </div>
+                </div>
+                
+                <div>
+                    <label class="block text-gray-300 mb-2 text-sm font-medium">额外奖励百分比 (%)</label>
+                    <div class="relative">
+                        <span class="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 text-xl font-bold">%</span>
+                        <input type="number" id="bonusRateInput" placeholder="例如：5" 
+                            class="w-full bg-black/30 border border-white/20 rounded-2xl py-4 pl-12 pr-4 text-2xl font-bold text-white placeholder-gray-600 input-glow focus:outline-none"
+                            oninput="calculate()" min="0" max="100" step="0.1" value="5">
+                    </div>
+                    <div class="flex flex-wrap gap-2 mt-4">
+                        <button onclick="setBonusRate(1)" class="px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-yellow-500/50 text-sm">1%</button>
+                        <button onclick="setBonusRate(3)" class="px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-yellow-500/50 text-sm">3%</button>
+                        <button onclick="setBonusRate(5)" class="px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-yellow-500/50 text-sm">5%</button>
+                        <button onclick="setBonusRate(8)" class="px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-yellow-500/50 text-sm">8%</button>
+                        <button onclick="setBonusRate(10)" class="px-4 py-2 rounded-full bg-white/5 border border-white/10 hover:bg-white/10 hover:border-yellow-500/50 text-sm">10%</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-6 mb-8">
+                <div class="bg-gradient-to-br from-pink-500/20 to-purple-600/20 rounded-2xl p-6 border border-pink-500/30 relative overflow-hidden">
+                    <div class="absolute top-0 right-0 w-32 h-32 bg-pink-500/20 rounded-full blur-3xl -mr-16 -mt-16"></div>
+                    <div class="relative z-10">
+                        <div class="text-gray-300 text-sm mb-1">您可获得奖励</div>
+                        <div class="text-4xl md:text-5xl font-black gradient-text number-animate" id="totalReward">RM 0.00</div>
+                        <div class="text-pink-300/80 text-sm mt-2" id="totalRateText">15% 总奖励率</div>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <div class="flex justify-between items-center p-3 rounded-xl bg-white/5">
+                        <span class="text-gray-400">基础奖励 (10%)</span>
+                        <span class="font-bold text-pink-400" id="baseReward">RM 0.00</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 rounded-xl bg-white/5">
+                        <span class="text-gray-400" id="bonusRateLabel">额外奖励 (5%)</span>
+                        <span class="font-bold text-yellow-400" id="bonusReward">RM 0.00</span>
+                    </div>
+                    <div class="flex justify-between items-center p-3 rounded-xl bg-white/5 border border-white/10">
+                        <span class="text-gray-300">好友充值金额</span>
+                        <span class="font-bold text-white" id="inputAmount">RM 0.00</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="space-y-4">
+                <h3 class="text-xl font-bold flex items-center gap-2 mb-4">💬 生成话术</h3>
+                
+                <div class="script-box rounded-2xl p-4 relative">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-sm text-blue-400 font-medium">📢 邀请话术</span>
+                        <button onclick="copyScript('invite')" class="btn-copy px-4 py-2 rounded-lg text-sm font-bold text-white flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>复制话术
+                        </button>
+                    </div>
+                    <div id="inviteScript" class="text-gray-200 text-sm leading-relaxed font-mono">好友充值 RM50 → 您可获得 RM7.50</div>
+                </div>
+
+                <div class="script-box rounded-2xl p-4 relative border-green-500/20">
+                    <div class="flex justify-between items-start mb-3">
+                        <span class="text-sm text-green-400 font-medium">🎉 恭喜话术</span>
+                        <button onclick="copyScript('congrats')" class="btn-success px-4 py-2 rounded-lg text-sm font-bold text-white flex items-center gap-2">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 002 2h2a2 2 0 002-2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>复制话术
+                        </button>
+                    </div>
+                    <div id="congratsScript" class="text-gray-200 text-sm leading-relaxed font-mono">恭喜你邀请朋友加入RS 你可以获得10%基础奖励+5%的活动奖励 总计奖励金额等于 RM7.50</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="glass-panel rounded-3xl p-6 md:p-8">
+            <h3 class="text-xl font-bold mb-6 flex items-center gap-2">📊 收益示例表</h3>
+            <div class="overflow-x-auto">
+                <table class="w-full">
+                    <thead>
+                        <tr class="border-b border-white/10 text-gray-400 text-sm">
+                            <th class="text-left py-3 px-4">好友充值</th>
+                            <th class="text-right py-3 px-4">基础奖励(10%)</th>
+                            <th class="text-right py-3 px-4" id="tableBonusHeader">额外奖励(5%)</th>
+                            <th class="text-right py-3 px-4 text-pink-400" id="tableTotalHeader">总收益(15%)</th>
+                        </tr>
+                    </thead>
+                    <tbody class="text-sm">
+                        <tr class="border-b border-white/5 hover:bg-white/5 cursor-pointer" onclick="setAmount(50)">
+                            <td class="py-3 px-4 font-medium">RM 50</td>
+                            <td class="py-3 px-4 text-right text-gray-400">RM 5.00</td>
+                            <td class="py-3 px-4 text-right text-gray-400" id="example1Bonus">RM 2.50</td>
+                            <td class="py-3 px-4 text-right font-bold text-pink-400" id="example1Total">RM 7.50 🔥</td>
+                        </tr>
+                        <tr class="border-b border-white/5 hover:bg-white/5 cursor-pointer" onclick="setAmount(500)">
+                            <td class="py-3 px-4 font-medium">RM 500</td>
+                            <td class="py-3 px-4 text-right text-gray-400">RM 50.00</td>
+                            <td class="py-3 px-4 text-right text-gray-400" id="example2Bonus">RM 25.00</td>
+                            <td class="py-3 px-4 text-right font-bold text-pink-400" id="example2Total">RM 75.00 💪</td>
+                        </tr>
+                        <tr class="border-b border-white/5 hover:bg-white/5 cursor-pointer" onclick="setAmount(1000)">
+                            <td class="py-3 px-4 font-medium">RM 1,000</td>
+                            <td class="py-3 px-4 text-right text-gray-400">RM 100.00</td>
+                            <td class="py-3 px-4 text-right text-gray-400" id="example3Bonus">RM 50.00</td>
+                            <td class="py-3 px-4 text-right font-bold text-pink-400" id="example3Total">RM 150.00 🚀</td>
+                        </tr>
+                        <tr class="hover:bg-white/5 cursor-pointer" onclick="setAmount(10000)">
+                            <td class="py-3 px-4 font-medium">RM 10,000</td>
+                            <td class="py-3 px-4 text-right text-gray-400">RM 1,000.00</td>
+                            <td class="py-3 px-4 text-right text-gray-400" id="example4Bonus">RM 500.00</td>
+                            <td class="py-3 px-4 text-right font-bold text-pink-400" id="example4Total">RM 1,500.00 💎</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="mt-8 text-center text-gray-400 text-sm">
+            <p>所有 RS 官方好友均可参与 • 活动时间有限，把握机会！</p>
+            <p class="mt-2 text-xs opacity-60">* 最终解释权归 RS 官方所有</p>
+        </div>
+    </div>
+
+    <div id="toast" class="fixed top-4 right-4 bg-green-500 text-white px-6 py-3 rounded-xl shadow-2xl transform translate-x-full opacity-0 transition-all duration-300 flex items-center gap-2 z-50 font-medium">
+        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/></svg>
+        <span id="toastMsg">已复制到剪贴板！</span>
+    </div>
+
+    <script>
+        function calculate() {
+            const amount = parseFloat(document.getElementById('amountInput').value) || 0;
+            const bonusRate = parseFloat(document.getElementById('bonusRateInput').value) || 0;
+            const baseRate = 0.10;
+            const totalRate = baseRate + bonusRate / 100;
+
+            const baseReward = amount * baseRate;
+            const bonusReward = amount * bonusRate / 100;
+            const totalReward = amount * totalRate;
+
+            document.getElementById('totalReward').textContent = 'RM ' + totalReward.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById('baseReward').textContent = 'RM ' + baseReward.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById('bonusReward').textContent = 'RM ' + bonusReward.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+            document.getElementById('inputAmount').textContent = 'RM ' + amount.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+            document.getElementById('bonusRateDisplay').textContent = bonusRate + '%';
+            document.getElementById('totalRateDisplay').textContent = (10 + bonusRate) + '%';
+            document.getElementById('bonusRateLabel').textContent = `额外奖励 (${bonusRate}%)`;
+            document.getElementById('tableBonusHeader').textContent = `额外奖励(${bonusRate}%)`;
+            document.getElementById('tableTotalHeader').textContent = `总收益(${10 + bonusRate}%)`;
+
+            updateExampleTable(bonusRate);
+            updateScripts(amount, totalReward, bonusRate);
+        }
+
+        function updateExampleTable(bonusRate) {
+            const list = [50, 500, 1000, 10000];
+            list.forEach((amt, i) => {
+                const b = amt * bonusRate / 100;
+                const t = amt * (0.1 + bonusRate / 100);
+                document.getElementById(`example${i+1}Bonus`).textContent = 'RM ' + b.toLocaleString('en-US', { minimumFractionDigits: 2 });
+                document.getElementById(`example${i+1}Total`).textContent = 'RM ' + t.toLocaleString('en-US', { minimumFractionDigits: 2 }) + [' 🔥',' 💪',' 🚀',' 💎'][i];
+            });
+        }
+
+        function updateScripts(amount, reward, bonusRate) {
+            const amtStr = 'RM ' + amount.toLocaleString('en-US', { minimumFractionDigits: 2 });
+            const rwdStr = 'RM ' + reward.toLocaleString('en-US', { minimumFractionDigits: 2 });
+            document.getElementById('inviteScript').textContent = `好友充值 ${amtStr} → 您可获得 ${rwdStr}`;
+            document.getElementById('congratsScript').textContent = `恭喜你邀请朋友加入RS 你可以获得10%基础奖励+${bonusRate}%的活动奖励 总计奖励金额等于 ${rwdStr}`;
+        }
+
+        function setAmount(amount) {
+            document.getElementById('amountInput').value = amount;
+            calculate();
+        }
+
+        function setBonusRate(rate) {
+            document.getElementById('bonusRateInput').value = rate;
+            calculate();
+        }
+
+        async function copyScript(type) {
+            const text = document.getElementById(type + 'Script').textContent.trim();
+            try { await navigator.clipboard.writeText(text); }
+            catch {
+                const t = document.createElement('textarea');
+                t.value = text; document.body.appendChild(t); t.select(); document.execCommand('copy'); document.body.removeChild(t);
+            }
+            const toast = document.getElementById('toast');
+            toast.classList.remove('translate-x-full','opacity-0');
+            setTimeout(()=>toast.classList.add('translate-x-full','opacity-0'), 2500);
+        }
+
+        document.addEventListener('DOMContentLoaded', ()=>{ setAmount(50); });
+    </script>
+</body>
+</html>
